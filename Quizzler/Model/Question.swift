@@ -15,7 +15,6 @@ struct Question {
     init(q: String, a: [String], correctAnswer: String) {
         text = q
         answers = a
-        rightAnswer = correctAnswer
-        
+        rightAnswer = correctAnswer        
     }
 }
