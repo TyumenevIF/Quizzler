@@ -19,13 +19,13 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    private let mainView = StackView()
+    private let stackView = StackView()
     var quizBrain = QuizBrain()
     
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.delegate = self
+        stackView.delegate = self
         setViews()
         setupConstraints()
         updateUI()
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     private func setViews() {
         view.backgroundColor = UIColor(red: 37/255, green: 44/255, blue: 74/255, alpha: 1.0)
         view.addSubview(backgroundImageView)
-        view.addSubview(mainView)
+        view.addSubview(stackView)
     }
     
     private func setupConstraints() {
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             make.height.equalTo(102)
         }
         
-        mainView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(view.snp.leadingMargin)
             make.trailing.equalTo(view.snp.trailingMargin)
@@ -78,18 +78,18 @@ extension ViewController: StackViewDelegate {
 private extension ViewController {
     
     @objc func updateUI() {
-        mainView.questionLabel.text = quizBrain.getQuestionText()
+        stackView.questionLabel.text = quizBrain.getQuestionText()
         
         let answerChoices = quizBrain.getAnswers()
-        mainView.choice1Button.setTitle(answerChoices[0], for: .normal)
-        mainView.choice2Button.setTitle(answerChoices[1], for: .normal)
-        mainView.choice3Button.setTitle(answerChoices[2], for: .normal)
+        stackView.choice1Button.setTitle(answerChoices[0], for: .normal)
+        stackView.choice2Button.setTitle(answerChoices[1], for: .normal)
+        stackView.choice3Button.setTitle(answerChoices[2], for: .normal)
         
-        mainView.progressView.progress = quizBrain.getProgress()
-        mainView.scoreLabel.text = "Score \(quizBrain.getScore())"
+        stackView.progressView.progress = quizBrain.getProgress()
+        stackView.scoreLabel.text = "Score \(quizBrain.getScore())"
         
-        mainView.choice1Button.backgroundColor = .clear
-        mainView.choice2Button.backgroundColor = .clear
-        mainView.choice3Button.backgroundColor = .clear
+        stackView.choice1Button.backgroundColor = .clear
+        stackView.choice2Button.backgroundColor = .clear
+        stackView.choice3Button.backgroundColor = .clear
     }
 }
