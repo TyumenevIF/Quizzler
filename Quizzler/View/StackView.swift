@@ -14,9 +14,9 @@ protocol StackViewDelegate: AnyObject {
 
 class StackView: UIView {
     
+    // MARK: - Properties
     weak var delegate: StackViewDelegate?
     
-    // MARK: - Private Properties
     let scoreLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
@@ -69,6 +69,16 @@ class StackView: UIView {
         return button
     }()
     
+    let progressView: UIProgressView = {
+        let progressBar = UIProgressView()
+        progressBar.progressViewStyle = .bar
+        progressBar.progress = 0
+        progressBar.tintColor = UIColor(red: 255/255, green: 117/255, blue: 168/255, alpha: 1.0)
+        progressBar.trackTintColor = .white
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        return progressBar
+    }()
+    
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -82,16 +92,6 @@ class StackView: UIView {
          self.choice3Button,
          self.progressView].forEach { stack.addArrangedSubview($0) }
         return stack
-    }()
-    
-    let progressView: UIProgressView = {
-        let progressBar = UIProgressView()
-        progressBar.progressViewStyle = .bar
-        progressBar.progress = 0
-        progressBar.tintColor = UIColor(red: 255/255, green: 117/255, blue: 168/255, alpha: 1.0)
-        progressBar.trackTintColor = .white
-        progressBar.translatesAutoresizingMaskIntoConstraints = false
-        return progressBar
     }()
     
     // MARK: - Initializers

@@ -53,22 +53,6 @@ class ViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-    
-    @objc func updateUI() {
-        mainView.questionLabel.text = quizBrain.getQuestionText()
-        
-        let answerChoices = quizBrain.getAnswers()
-        mainView.choice1Button.setTitle(answerChoices[0], for: .normal)
-        mainView.choice2Button.setTitle(answerChoices[1], for: .normal)
-        mainView.choice3Button.setTitle(answerChoices[2], for: .normal)
-        
-        mainView.progressView.progress = quizBrain.getProgress()
-        mainView.scoreLabel.text = "Score \(quizBrain.getScore())"
-        
-        mainView.choice1Button.backgroundColor = .clear
-        mainView.choice2Button.backgroundColor = .clear
-        mainView.choice3Button.backgroundColor = .clear
-    }
 }
 
 // MARK: - StackViewDelegate
@@ -87,5 +71,25 @@ extension ViewController: StackViewDelegate {
         quizBrain.nextQuestion()
         
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+    }
+}
+
+// MARK: - Target Actions
+private extension ViewController {
+    
+    @objc func updateUI() {
+        mainView.questionLabel.text = quizBrain.getQuestionText()
+        
+        let answerChoices = quizBrain.getAnswers()
+        mainView.choice1Button.setTitle(answerChoices[0], for: .normal)
+        mainView.choice2Button.setTitle(answerChoices[1], for: .normal)
+        mainView.choice3Button.setTitle(answerChoices[2], for: .normal)
+        
+        mainView.progressView.progress = quizBrain.getProgress()
+        mainView.scoreLabel.text = "Score \(quizBrain.getScore())"
+        
+        mainView.choice1Button.backgroundColor = .clear
+        mainView.choice2Button.backgroundColor = .clear
+        mainView.choice3Button.backgroundColor = .clear
     }
 }
