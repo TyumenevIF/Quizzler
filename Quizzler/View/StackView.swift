@@ -22,7 +22,6 @@ class StackView: UIView {
         label.font = .systemFont(ofSize: 17)
         label.textColor = .white
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -32,11 +31,10 @@ class StackView: UIView {
         label.textColor = .white
         label.textAlignment = .justified
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let choice1Button: UIButton = {
+    lazy var choice1Button: UIButton = {
         let button = UIButton()
         button.setTitle("Choice 1", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25)
@@ -47,7 +45,7 @@ class StackView: UIView {
         return button
     }()
     
-    let choice2Button: UIButton = {
+    lazy var choice2Button: UIButton = {
         let button = UIButton()
         button.setTitle("Choice 2", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25)
@@ -58,7 +56,7 @@ class StackView: UIView {
         return button
     }()
     
-    let choice3Button: UIButton = {
+    lazy var choice3Button: UIButton = {
         let button = UIButton()
         button.setTitle("Choice 3", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25)
@@ -75,7 +73,6 @@ class StackView: UIView {
         progressBar.progress = 0
         progressBar.tintColor = UIColor(red: 255/255, green: 117/255, blue: 168/255, alpha: 1.0)
         progressBar.trackTintColor = .white
-        progressBar.translatesAutoresizingMaskIntoConstraints = false
         return progressBar
     }()
     
@@ -97,8 +94,8 @@ class StackView: UIView {
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addViews()
-        addConstraints()
+        setSubviews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -106,11 +103,11 @@ class StackView: UIView {
     }
     
     // MARK: - Private Methods
-    private func addViews() {
+    private func setSubviews() {
         addSubview(stackView)
     }
     
-    private func addConstraints() {        
+    private func setupConstraints() {        
         stackView.snp.makeConstraints { (make) in
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
